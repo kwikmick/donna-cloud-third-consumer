@@ -1,0 +1,25 @@
+buildscript {
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.3.RELEASE"
+		classpath 'nl.donna.gradle:donna-release-plugin:1.7.0'
+	}
+}
+
+apply plugin: 'groovy'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'nl.donna.gradle.donna-release'
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:$BOM_VERSION"
+	}
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web")
+	testCompile("org.springframework.cloud:spring-cloud-starter-contract-stub-runner")
+	testCompile("com.example:donna-cloud-contract:0.4.0-SNAPSHOT:stubs") {
+		transitive = false
+	}
+}

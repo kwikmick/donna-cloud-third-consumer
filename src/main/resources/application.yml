@@ -1,0 +1,6 @@
+spring:
+  application.name: donna-cloud-third-consumer
+server.port: ${PORT:8083}
+logging:
+  level:
+    org.springframework.cloud: debug
